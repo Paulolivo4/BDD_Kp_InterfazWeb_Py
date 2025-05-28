@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Registro de Catequizado</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <style>
+        .icon-id { color: #007bff; }           /* Azul */
+        .icon-user { color: #5cb85c; }         /* Verde */
+        .icon-calendar { color: #f0ad4e; }     /* Naranja */
+        .icon-cedula { color: #d9534f; }       /* Rojo */
+        .icon-home { color: #795548; }         /* Marrón */
+        .icon-earphone { color: #5bc0de; }     /* Celeste */
+        .icon-envelope { color: #f39c12; }     /* Amarillo */
+        .icon-map-marker { color: #9b59b6; }   /* Morado */
+        .icon-list-alt { color: #17a2b8; }     /* Azul claro */
+        .icon-save { color: #2ecc71; }         /* Verde claro */
+    </style>
+</head>
+<body>
+    <div class="container" style="max-width: 500px; margin-top: 40px;">
+        <h1 class="text-center">Registrar Catequizado</h1>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+          {% if messages %}
+            <div>
+            {% for category, message in messages %}
+              <div class="alert alert-{{ 'success' if category == 'success' else 'danger' }}">{{ message }}</div>
+            {% endfor %}
+            </div>
+          {% endif %}
+        {% endwith %}
+        <form method="post">
+            <div class="form-group">
+                <label for="id"><span class="glyphicon glyphicon-barcode icon-id"></span> ID</label>
+                <input type="text" class="form-control" name="id" id="id" placeholder="ID" required>
+            </div>
+            <div class="form-group">
+                <label for="nombre"><span class="glyphicon glyphicon-user icon-user"></span> Nombre</label>
+                <input type="text" class="form-control" name="nombre" id="nombre" placeholder="Nombre" required>
+            </div>
+            <div class="form-group">
+                <label for="apellido"><span class="glyphicon glyphicon-user icon-user"></span> Apellido</label>
+                <input type="text" class="form-control" name="apellido" id="apellido" placeholder="Apellido" required>
+            </div>
+            <div class="form-group">
+                <label for="fecha_nacimiento"><span class="glyphicon glyphicon-calendar icon-calendar"></span> Fecha de Nacimiento</label>
+                <input type="date" class="form-control" name="fecha_nacimiento" id="fecha_nacimiento" required>
+            </div>
+            <div class="form-group">
+                <label for="cedula"><span class="glyphicon glyphicon-credit-card icon-cedula"></span> Cédula</label>
+                <input type="text" class="form-control" name="cedula" id="cedula" placeholder="Cédula" required>
+            </div>
+            <div class="form-group">
+                <label for="direccion"><span class="glyphicon glyphicon-home icon-home"></span> Dirección</label>
+                <input type="text" class="form-control" name="direccion" id="direccion" placeholder="Dirección" required>
+            </div>
+            <div class="form-group">
+                <label for="telefono"><span class="glyphicon glyphicon-earphone icon-earphone"></span> Teléfono</label>
+                <input type="text" class="form-control" name="telefono" id="telefono" placeholder="Teléfono" required>
+            </div>
+            <div class="form-group">
+                <label for="email"><span class="glyphicon glyphicon-envelope icon-envelope"></span> Email</label>
+                <input type="email" class="form-control" name="email" id="email" placeholder="Email" required>
+            </div>
+            <div class="form-group">
+                <label for="parroquia_id"><span class="glyphicon glyphicon-map-marker icon-map-marker"></span> ID Parroquia</label>
+                <input type="text" class="form-control" name="parroquia_id" id="parroquia_id" placeholder="ID Parroquia" required>
+            </div>
+            <div class="form-group">
+                <label for="grupo_id"><span class="glyphicon glyphicon-list-alt icon-list-alt"></span> ID Grupo</label>
+                <input type="text" class="form-control" name="grupo_id" id="grupo_id" placeholder="ID Grupo" required>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">
+                <span class="glyphicon glyphicon-floppy-disk icon-save"></span> Registrar
+            </button>
+        </form>
+    </div>
+</body>
+</html>

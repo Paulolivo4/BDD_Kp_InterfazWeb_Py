@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Editar Catequizado</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container" style="max-width: 500px; margin-top: 40px;">
+        <h1 class="text-center">Editar Catequizado</h1>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+          {% if messages %}
+            <div>
+            {% for category, message in messages %}
+              <div class="alert alert-{{ 'success' if category == 'success' else 'danger' }}">{{ message }}</div>
+            {% endfor %}
+            </div>
+          {% endif %}
+        {% endwith %}
+        <form method="post">
+            <div class="form-group">
+                <label for="nombre">Nombre</label>
+                <input type="text" class="form-control" name="nombre" id="nombre" value="{{ catequizado.Nombre_Catequizado }}" required>
+            </div>
+            <div class="form-group">
+                <label for="apellido">Apellido</label>
+                <input type="text" class="form-control" name="apellido" id="apellido" value="{{ catequizado.Apellido_Catequizado }}" required>
+            </div>
+            <div class="form-group">
+                <label for="fecha_nacimiento">Fecha de Nacimiento</label>
+                <input type="date" class="form-control" name="fecha_nacimiento" id="fecha_nacimiento" value="{{ catequizado.FechaNacimiento_Catequizado|safe }}" required>
+            </div>
+            <div class="form-group">
+                <label for="cedula">Cédula</label>
+                <input type="text" class="form-control" name="cedula" id="cedula" value="{{ catequizado.Cedula_Catequizado }}" required>
+            </div>
+            <div class="form-group">
+                <label for="direccion">Dirección</label>
+                <input type="text" class="form-control" name="direccion" id="direccion" value="{{ catequizado.Direccion_Catequizado }}" required>
+            </div>
+            <div class="form-group">
+                <label for="telefono">Teléfono</label>
+                <input type="text" class="form-control" name="telefono" id="telefono" value="{{ catequizado.Telefono_Catequizado }}" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" class="form-control" name="email" id="email" value="{{ catequizado.Email_Catequizado }}" required>
+            </div>
+            <div class="form-group">
+                <label for="parroquia_id">ID Parroquia</label>
+                <input type="text" class="form-control" name="parroquia_id" id="parroquia_id" value="{{ catequizado.Parroquia_IdParroquia }}" required>
+            </div>
+            <div class="form-group">
+                <label for="grupo_id">ID Grupo</label>
+                <input type="text" class="form-control" name="grupo_id" id="grupo_id" value="{{ catequizado.GrupoCatequizado_IdGrupoCatequizado }}" required>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">Actualizar</button>
+        </form>
+    </div>
+</body>
+</html>

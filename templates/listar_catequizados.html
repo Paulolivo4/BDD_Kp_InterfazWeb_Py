@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Catequizados</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container" style="margin-top: 40px;">
+    <h1 class="text-center">Lista de Catequizados</h1>
+    <a href="{{ url_for('registro_catequizado') }}" class="btn btn-success">Nuevo Catequizado</a>
+    <br><br>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        <div>
+        {% for category, message in messages %}
+          <div class="alert alert-{{ 'success' if category == 'success' else 'danger' }}">{{ message }}</div>
+        {% endfor %}
+        </div>
+      {% endif %}
+    {% endwith %}
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Fecha Nacimiento</th>
+                <th>Cédula</th>
+                <th>Dirección</th>
+                <th>Teléfono</th>
+                <th>Email</th>
+                <th>Parroquia</th>
+                <th>Grupo</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for c in catequizados %}
+            <tr>
+                <td>{{ c.IdCatequizado }}</td>
+                <td>{{ c.Nombre_Catequizado }}</td>
+                <td>{{ c.Apellido_Catequizado }}</td>
+                <td>{{ c.FechaNacimiento_Catequizado }}</td>
+                <td>{{ c.Cedula_Catequizado }}</td>
+                <td>{{ c.Direccion_Catequizado }}</td>
+                <td>{{ c.Telefono_Catequizado }}</td>
+                <td>{{ c.Email_Catequizado }}</td>
+                <td>{{ c.Parroquia_IdParroquia }}</td>
+                <td>{{ c.GrupoCatequizado_IdGrupoCatequizado }}</td>
+                <td>
+                    <a href="{{ url_for('editar_catequizado', id=c.IdCatequizado) }}" class="btn btn-primary btn-xs">Editar</a>
+                    <a href="{{ url_for('eliminar_catequizado', id=c.IdCatequizado) }}" class="btn btn-danger btn-xs" onclick="return confirm('¿Seguro que deseas eliminar este catequizado?');">Eliminar</a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
