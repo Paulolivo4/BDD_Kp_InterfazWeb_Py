@@ -1,3 +1,5 @@
+import os
+
 from flask import Flask, redirect, url_for
 from controllers.catequizado_controller import (
     registro_catequizado,
@@ -7,7 +9,7 @@ from controllers.catequizado_controller import (
 )
 
 app = Flask(__name__)
-app.secret_key = 'Softw@re2025'
+app.secret_key = os.environ.get('SECRET_KEY') or os.urandom(24).hex()
 
 @app.route('/')
 def home():

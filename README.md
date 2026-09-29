@@ -39,4 +39,8 @@ templates/                            # registro, listar, editar
 
 ## Status
 
-The controller imports `models.catequizado`, and that module is **not included in this repository yet**, so the app will not start until it is added. Database credentials should also be read from environment variables instead of `conexion.py`.
+The controller imports `models.catequizado`, and that module is **not included in this repository yet**, so the app will not start until it is added.
+
+## Configuration
+
+Database settings and the Flask secret are read from environment variables (see `.env.example`): `DB_SERVER`, `DB_NAME`, `DB_USER`, `DB_PASSWORD` and `SECRET_KEY`.

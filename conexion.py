@@ -1,22 +1,27 @@
+import os
+
 import pyodbc
 
-# Datos de conexión
-server = 'localhost'  # o la IP/instancia del servidor SQL Server
-database = 'CATEQUESIS PARROQUIAL'
-username = 'catequesis_user'
-password = 'Software@2025'
+# Connection settings come from environment variables (see .env.example).
+server = os.environ.get('DB_SERVER', 'localhost')
+database = os.environ.get('DB_NAME', 'CATEQUESIS PARROQUIAL')
+username = os.environ.get('DB_USER')
+password = os.environ.get('DB_PASSWORD')
 
-# Cadena de conexión
-conn_str = (
-    f"DRIVER={{ODBC Driver 17 for SQL Server}};"
-    f"SERVER={server};"
-    f"DATABASE={database};"
-    f"UID={username};"
-    f"PWD={password}"
-)
+conn = None
 
-try:
-    conn = pyodbc.connect(conn_str)
-    print("✅ Conexión exitosa")
-except Exception as e:
-    print("❌ Error al conectar:", e)
+if not (username and password):
+    print("Missing DB_USER / DB_PASSWORD environment variables")
+else:
+    conn_str = (
+        "DRIVER={ODBC Driver 17 for SQL Server};"
+        f"SERVER={server};"
+        f"DATABASE={database};"
+        f"UID={username};"
+        f"PWD={password}"
+    )
+    try:
+        conn = pyodbc.connect(conn_str)
+        print("Connection successful")
+    except Exception as e:
+        print("Connection error:", e)
